@@ -1,50 +1,46 @@
-const shuffle = require('./shuffler');//Imports and external function called shuffler to be called during the program
+const shuffle = require('./shuffler.js');
 
-const primeNum =(n)=>{//function prints all prime numbers within a given range of numbers
+const primeNum =(n)=>{
   var num;
   var n;
   var i;
   var result=[];
-  for (num = 2; num <= n; num++) {//iterates through all the numbers in the given range
+  for (num = 2; num <= n; num++) {
 
       var notPrime = false;
-      for (i = 2; i < num; i++) {//iterates through a particular number to ensure that it is divisible by only 1 and the number itslef
+      for (i = 2; i < num; i++) {
           if (num%i===0) {
               notPrime = true;
           }
       }
       if (notPrime === false) {
-        result.push(num);//pushes all prime numbers to an empty array
+        result.push(num);
       }
       }
-      return results;//retruns the array of prime numbers
+      var shuffled= shuffle(result);
+      return shuffled;
 
-}
-console.log(primeNum(100));//prints all the prime numbers upto 100
+};
+console.log(primeNum(100));
 
 var array = primeNum(100);
 
 
-var shuffled= shuffle.shuffler(array);//declares a variable and assigns it the imported function seen earlier passes the array through it
-console.log(shuffled);//prints the result of the process above
 
-function sort_prime(array){//function sorts the shuffled array to make it in ascending order
+const sort_prime = (arrayToShuffle)=>{
   var i;
   var j;
   var next;
-  for (i=0; i<array.length  ; i++) {
-    for (j=0; j<array.length; j++) {
-      if (array[j]>array[j+1]) {
-        /*iterates through the array multiple times untill all the numbers
-        start from the smallest and keeps increasing until the largest
-        */
-        next =array[j];
-        array[j]=array[j+1];
-        array[j+1]=next;
+  for (i=0; i<arrayToShuffle.length  ; i++) {
+    for (j=0; j<arrayToShuffle.length; j++) {
+      if (arrayToShuffle[j]>arrayToShuffle[j+1]) {
+        next =arrayToShuffle[j];
+        arrayToShuffle[j]=arrayToShuffle[j+1];
+        arrayToShuffle[j+1]=next;
       }
     }
   }
-  return array;//returns the sorted array in ascending order
+  return arrayToShuffle;
 }
-sort_prime(shuffled);
-console.log(sort_prime(shuffled));//prints to the console the the sorted array
+sort_prime(array);
+console.log(sort_prime(array));
